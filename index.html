@@ -1,0 +1,510 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FantasyLand 🦄 Dunia Ajaib</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap');
+
+:root {
+  --pink: #ff72b6;
+  --purple: #9370db;
+  --light: #fff4fc;
+  --text: #674b91;
+  --white: #ffffff;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Nunito', sans-serif;
+  color: var(--text);
+  background: linear-gradient(180deg,#fff5fc,#f0eaff,#fff8fc);
+  overflow-x: hidden;
+}
+button { font: inherit; cursor: pointer; border: none; }
+header {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:18px 7%; background:#ffffffdf; backdrop-filter:blur(12px);
+  position:sticky; top:0; z-index:20; box-shadow:0 3px 20px #c69ce522;
+}
+.logo { font:700 28px Fredoka,cursive; color:#ee63a8; }
+.logo span { color:#9270db; }
+nav { display:flex; gap:23px; align-items:center; }
+nav a { text-decoration:none; color:var(--text); font-weight:800; font-size:14px; }
+nav a:hover { color:var(--pink); }
+.pill,.btn {
+  border-radius:30px; padding:12px 22px; font-weight:800;
+  color:white; background:linear-gradient(135deg,#ff8ec4,#ed58a4);
+  box-shadow:0 5px 14px #ee72b544; transition:.25s;
+}
+.pill:hover,.btn:hover { transform:translateY(-3px) scale(1.03); }
+.menu-btn { display:none; background:none; font-size:25px; color:var(--purple); }
+
+.hero {
+  min-height:540px; padding:80px 8%;
+  display:flex; align-items:center; position:relative; overflow:hidden;
+  background:
+    radial-gradient(ellipse at 75% 70%,#ffbde1 0%,transparent 38%),
+    radial-gradient(ellipse at 15% 15%,#b8dfff 0%,transparent 45%),
+    linear-gradient(135deg,#dff5ff,#fce4ff 55%,#fff2fb);
+}
+.hero:before {
+  content:""; position:absolute; width:390px;height:390px;border-radius:50%;
+  background:#ffffff45;right:8%;top:40px;
+}
+.hero-content { max-width:590px; position:relative; z-index:2; }
+.eyebrow {
+  display:inline-block;background:white;padding:8px 17px;
+  border-radius:30px;color:#df61a7;font-weight:800;margin-bottom:18px;
+}
+h1 { font:700 clamp(43px,7vw,78px)/1.05 Fredoka,cursive; letter-spacing:-2px; }
+h1 span { color:#ed65ae; }
+.hero p { margin:22px 0; font-size:17px; line-height:1.8; max-width:460px; }
+.hero-art {
+  position:absolute;right:8%;bottom:18px;font-size:clamp(130px,22vw,260px);
+  filter:drop-shadow(0 18px 15px #a67cc533);
+  animation:float 3s ease-in-out infinite;
+}
+@keyframes float { 50% { transform:translateY(-17px) rotate(3deg); } }
+.sparkle { position:absolute; color:white;font-size:30px;animation:twinkle 2s infinite alternate; }
+@keyframes twinkle { to { opacity:.35; transform:scale(.7) rotate(20deg); } }
+.hero-buttons { display:flex; gap:12px; flex-wrap:wrap; }
+.btn.secondary { background:white;color:#9b72d4;box-shadow:0 5px 15px #bca0dc30; }
+
+.features {
+  display:grid;grid-template-columns:repeat(4,1fr);gap:15px;
+  margin:-32px 6% 60px;position:relative;z-index:4;
+}
+.feature {
+  text-align:center;background:white;padding:24px 14px;border-radius:24px;
+  box-shadow:0 10px 30px #bfa2df20;border:1px solid #f7e4ff;
+}
+.feature .icon { font-size:32px; }
+.feature h3 { font:600 17px Fredoka;margin:10px 0 5px; }
+.feature p { font-size:13px;line-height:1.6; }
+
+section { padding:35px 7%; }
+.section-heading { text-align:center;margin-bottom:30px; }
+.section-heading small { color:#e75eaa;font-weight:800; }
+.section-heading h2 { font:700 clamp(29px,4vw,43px) Fredoka;margin:8px 0; }
+.section-heading p { font-size:15px;line-height:1.7; }
+
+.world-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:22px; }
+.world-card {
+  overflow:hidden;background:white;border-radius:25px;
+  border:2px solid #fff;box-shadow:0 9px 25px #bca1df24;
+  transition:.3s;cursor:pointer;
+}
+.world-card:hover { transform:translateY(-8px);box-shadow:0 15px 30px #c68bc844; }
+.world-cover {
+  min-height:180px;display:grid;place-items:center;position:relative;
+  font-size:83px;overflow:hidden;
+}
+.world-cover span { filter:drop-shadow(0 10px 8px #55407720); }
+.world-cover:after {
+  content:"✦  ·  ✧";position:absolute;top:15px;right:15px;
+  color:#fff;font-size:20px;
+}
+.pink-bg { background:linear-gradient(145deg,#ffc9e6,#e4caff); }
+.blue-bg { background:linear-gradient(145deg,#c0e9ff,#a9b9ff); }
+.green-bg { background:linear-gradient(145deg,#d7ffd9,#b5e8ff); }
+.yellow-bg { background:linear-gradient(145deg,#fff0b9,#ffcce1); }
+.purple-bg { background:linear-gradient(145deg,#e1c5ff,#c2d0ff); }
+.mint-bg { background:linear-gradient(145deg,#c2fff0,#d6d0ff); }
+.world-info { padding:18px; }
+.world-info h3 { font:600 21px Fredoka; }
+.world-info p { margin:8px 0 14px;font-size:13px;line-height:1.7; }
+.world-footer { display:flex;align-items:center;justify-content:space-between; }
+.world-tag { font-size:11px;background:#fff0f8;color:#e45caa;padding:6px 10px;border-radius:20px;font-weight:800; }
+.arrow { width:36px;height:36px;border-radius:50%;background:#f9e6ff;color:#9c65d3;font-size:19px; }
+
+.adventure {
+  margin:55px 7%;padding:38px;border-radius:30px;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  background:linear-gradient(120deg,#ffe2f2,#e4d8ff,#d9f4ff);
+}
+.adventure h2 { font:700 30px Fredoka; }
+.adventure p { margin:12px 0 20px;line-height:1.7; }
+.adventure-art { font-size:100px;animation:float 3.5s infinite; }
+
+.game-box {
+  max-width:700px;margin:auto;background:white;border-radius:28px;
+  padding:30px;text-align:center;box-shadow:0 10px 30px #bca1df20;
+  border:2px solid #f6e7ff;
+}
+.game-box h3 { font:600 25px Fredoka; }
+.game-box p { margin:12px 0;line-height:1.7; }
+.game-stats { display:flex;justify-content:center;gap:12px;margin:20px 0;flex-wrap:wrap; }
+.stat { padding:10px 18px;background:#fff1f9;border-radius:20px;font-weight:800; }
+.star-area {
+  min-height:155px;background:linear-gradient(135deg,#e6f5ff,#fce4ff);
+  border-radius:20px;display:flex;align-items:center;justify-content:center;
+  gap:15px;flex-wrap:wrap;padding:20px;
+}
+.star {
+  background:transparent;font-size:39px;transition:.2s;
+  animation:float 2s ease-in-out infinite;
+}
+.star:hover { transform:scale(1.3); }
+.game-message { min-height:28px;margin:15px 0;color:#e65da7;font-weight:800; }
+.game-controls { display:flex;justify-content:center;gap:10px;flex-wrap:wrap; }
+
+.gift-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:18px; }
+.gift {
+  background:white;border-radius:23px;padding:24px;text-align:center;
+  box-shadow:0 7px 22px #bca1df1b;
+}
+.gift .icon { font-size:45px; }
+.gift h3 { font:600 20px Fredoka;margin:10px; }
+.gift p { font-size:13px;line-height:1.7;margin-bottom:15px; }
+.gift button { background:#f4e7ff;color:#9261ce;padding:10px 18px;border-radius:20px;font-weight:800; }
+.gift button:disabled { background:#eee;color:#999;cursor:default; }
+
+.quote {
+  margin:55px 7%;text-align:center;padding:40px 20px;border-radius:30px;
+  background:linear-gradient(120deg,#fbe4f4,#e9e1ff);
+}
+.quote div { font-size:35px; }
+.quote blockquote { font:600 24px Fredoka;max-width:600px;margin:15px auto;line-height:1.5; }
+footer { background:#8764bd;color:white;padding:35px 7%;text-align:center; }
+footer .logo { color:white;margin-bottom:12px; }
+footer p { font-size:13px;line-height:2; }
+footer a { color:white;text-decoration:none;margin:0 9px; }
+
+.modal {
+  display:none;position:fixed;inset:0;z-index:100;background:#39245388;
+  align-items:center;justify-content:center;padding:20px;
+}
+.modal.show { display:flex; }
+.modal-card {
+  width:min(440px,100%);background:white;padding:32px;border-radius:28px;
+  text-align:center;position:relative;animation:pop .25s ease-out;
+}
+@keyframes pop { from {transform:scale(.8);opacity:0} to {transform:scale(1);opacity:1} }
+.modal-emoji { font-size:85px;margin:10px; }
+.modal-card h2 { font:700 29px Fredoka; }
+.modal-card p { margin:13px 0 20px;line-height:1.7; }
+.close { position:absolute;right:15px;top:12px;background:#f8eaff;border-radius:50%;width:35px;height:35px;font-size:21px;color:#9066c9; }
+.toast {
+  position:fixed;bottom:25px;left:50%;transform:translateX(-50%) translateY(100px);
+  background:#7955a9;color:white;padding:14px 22px;border-radius:25px;
+  z-index:200;box-shadow:0 5px 20px #56387b33;transition:.35s;
+  width:max-content;max-width:90%;text-align:center;
+}
+.toast.show { transform:translateX(-50%) translateY(0); }
+
+@media(max-width:850px) {
+  nav { gap:12px; }
+  nav a { font-size:12px; }
+  .hero-art { right:0;opacity:.65; }
+  .hero-content { max-width:540px; }
+  .world-grid { grid-template-columns:repeat(2,1fr); }
+}
+@media(max-width:600px) {
+  header { padding:15px 5%; }
+  .logo { font-size:23px; }
+  .menu-btn { display:block; }
+  nav {
+    display:none;position:absolute;top:100%;left:0;width:100%;
+    background:white;padding:22px;flex-direction:column;
+    box-shadow:0 10px 15px #a67cc522;
+  }
+  nav.open { display:flex; }
+  .hero { padding:65px 7%;min-height:540px; }
+  .hero-art { right:-12px;bottom:15px;font-size:145px;opacity:.35; }
+  .hero p { font-size:15px; }
+  .features { grid-template-columns:repeat(2,1fr);margin-left:5%;margin-right:5%; }
+  .feature { padding:17px 10px; }
+  section { padding:25px 5%; }
+  .world-grid { grid-template-columns:1fr; }
+  .world-cover { min-height:165px; }
+  .adventure { margin:35px 5%;padding:25px; }
+  .adventure-art { font-size:65px; }
+  .adventure h2 { font-size:25px; }
+  .gift-grid { grid-template-columns:1fr; }
+  .game-box { padding:20px 13px; }
+  .quote { margin:35px 5%; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">🦄 Fantasy<span>Land</span></div>
+  <button class="menu-btn" onclick="toggleMenu()" aria-label="Buka menu">☰</button>
+  <nav id="nav">
+    <a href="#beranda" onclick="closeMenu()">🏠 Beranda</a>
+    <a href="#dunia" onclick="closeMenu()">🌈 Dunia</a>
+    <a href="#game" onclick="closeMenu()">🎮 Mini Game</a>
+    <a href="#hadiah" onclick="closeMenu()">🎁 Hadiah</a>
+    <button class="pill" onclick="openWelcome()">Mulai ✨</button>
+  </nav>
+</header>
+
+<main>
+<section class="hero" id="beranda">
+  <span class="sparkle" style="top:15%;left:8%">✦</span>
+  <span class="sparkle" style="top:20%;left:55%">✧</span>
+  <span class="sparkle" style="bottom:15%;left:48%">✦</span>
+  <div class="hero-content">
+    <span class="eyebrow">🌷 Tempat ajaib penuh kebahagiaan</span>
+    <h1>Welcome to<br><span>FantasyLand!</span> 💗</h1>
+    <p>
+      Hai, peri kecil! ✨ Yuk, masuki dunia penuh
+      keajaiban, kastil permen, unicorn lucu, dan
+      petualangan yang super gemes!
+    </p>
+    <div class="hero-buttons">
+      <button class="btn" onclick="goToWorlds()">Mulai Petualangan ♡</button>
+      <button class="btn secondary" onclick="goToGame()">Main Game 🎀</button>
+    </div>
+  </div>
+  <div class="hero-art" aria-label="Unicorn ajaib">🦄</div>
+</section>
+
+<div class="features">
+  <div class="feature"><div class="icon">🏰</div><h3>Kastil Ajaib</h3><p>Jelajahi istana yang cantik.</p></div>
+  <div class="feature"><div class="icon">🧚🏻‍♀️</div><h3>Teman Peri</h3><p>Bertemu teman yang menggemaskan.</p></div>
+  <div class="feature"><div class="icon">🎮</div><h3>Mini Game</h3><p>Main dan kumpulkan bintang.</p></div>
+  <div class="feature"><div class="icon">🎁</div><h3>Hadiah Lucu</h3><p>Klaim hadiah spesialmu.</p></div>
+</div>
+
+<section id="dunia">
+  <div class="section-heading">
+    <small>🌸 YOUR MAGICAL DESTINATION 🌸</small>
+    <h2>Pilih Dunia Favoritmu!</h2>
+    <p>Setiap dunia punya cerita dan keajaibannya sendiri.<br>
+      Klik kartu untuk melihat rahasia di dalamnya! 💕</p>
+  </div>
+  <div class="world-grid">
+    <article class="world-card" onclick="showWorld('Kerajaan Awan','🏰','Istana indah di atas awan, taman bunga berkilauan, dan putri yang menjaga keajaiban langit.')">
+      <div class="world-cover pink-bg"><span>🏰</span></div>
+      <div class="world-info"><h3>🏰 Kerajaan Awan</h3><p>Istana pink di antara awan lembut.</p><div class="world-footer"><span class="world-tag">✨ Dunia kerajaan</span><button class="arrow">➜</button></div></div>
+    </article>
+    <article class="world-card" onclick="showWorld('Pulau Pelangi','🏝️','Pantai berwarna pastel, pohon kelapa, laut sebening kristal, dan lumba-lumba yang suka bermain.')">
+      <div class="world-cover blue-bg"><span>🏝️</span></div>
+      <div class="world-info"><h3>🏝️ Pulau Pelangi</h3><p>Pantai cantik dengan laut berkilau.</p><div class="world-footer"><span class="world-tag">🫧 Dunia pantai</span><button class="arrow">➜</button></div></div>
+    </article>
+    <article class="world-card" onclick="showWorld('Hutan Permen','🍄','Hutan ajaib dengan jamur raksasa, bunga bercahaya, dan kelinci mungil yang menyukai permen.')">
+      <div class="world-cover green-bg"><span>🍄</span></div>
+      <div class="world-info"><h3>🍄 Hutan Permen</h3><p>Rumah peri kecil dan jamur ajaib.</p><div class="world-footer"><span class="world-tag">🌿 Dunia alam</span><button class="arrow">➜</button></div></div>
+    </article>
+    <article class="world-card" onclick="showWorld('Istana Es','❄️','Istana kristal berkilauan, salju lembut, penguin lucu, dan aurora yang menari di langit malam.')">
+      <div class="world-cover blue-bg"><span>❄️</span></div>
+      <div class="world-info"><h3>❄️ Istana Es</h3><p>Negeri salju yang cantik dan damai.</p><div class="world-footer"><span class="world-tag">💎 Dunia es</span><button class="arrow">➜</button></div></div>
+    </article>
+    <article class="world-card" onclick="showWorld('Negeri Permen','🍭','Sungai cokelat, rumah kue jahe, awan marshmallow, dan pelangi permen yang bisa kamu jelajahi.')">
+      <div class="world-cover yellow-bg"><span>🍭</span></div>
+      <div class="world-info"><h3>🍭 Negeri Permen</h3><p>Semua serba manis dan warna-warni.</p><div class="world-footer"><span class="world-tag">🍬 Dunia manis</span><button class="arrow">➜</button></div></div>
+    </article>
+    <article class="world-card" onclick="showWorld('Galaksi Bintang','🌌','Terbang di antara planet pastel, bertemu alien imut, dan mencari bintang jatuh yang membawa harapan.')">
+      <div class="world-cover purple-bg"><span>🌌</span></div>
+      <div class="world-info"><h3>🌌 Galaksi Bintang</h3><p>Petualangan kosmik penuh cahaya.</p><div class="world-footer"><span class="world-tag">🌟 Dunia kosmik</span><button class="arrow">➜</button></div></div>
+    </article>
+  </div>
+</section>
+
+<div class="adventure">
+  <div>
+    <h2>Yuk, Kumpulkan Bintang! ⭐</h2>
+    <p>Jadilah peri pemberani dan kumpulkan bintang<br>
+      sebanyak mungkin di mini game FantasyLand!</p>
+    <button class="btn" onclick="goToGame()">Main Sekarang ♡</button>
+  </div>
+  <div class="adventure-art">🧚🏻‍♀️✨</div>
+</div>
+
+<section id="game">
+  <div class="section-heading">
+    <small>🎮 LITTLE MAGIC GAME 🎮</small>
+    <h2>Tangkap Bintang Gemes!</h2>
+    <p>Klik bintang sebanyak mungkin sebelum waktunya habis.</p>
+  </div>
+  <div class="game-box">
+    <h3>🌟 Star Catcher 🌟</h3>
+    <p>Setiap bintang yang kamu klik bernilai 10 poin!</p>
+    <div class="game-stats">
+      <div class="stat">⭐ Skor: <span id="score">0</span></div>
+      <div class="stat">⏰ Waktu: <span id="time">20</span>s</div>
+      <div class="stat">🏆 Rekor: <span id="best">0</span></div>
+    </div>
+    <div class="star-area" id="starArea">
+      <span style="font-size:43px">🌈</span>
+      <p style="width:100%">Tekan tombol mulai untuk bermain!</p>
+    </div>
+    <div class="game-message" id="gameMessage">Siap menjadi pengumpul bintang? 💗</div>
+    <div class="game-controls">
+      <button class="btn" id="startGame" onclick="startGame()">Mulai Bermain 🎮</button>
+      <button class="btn secondary" onclick="resetGame()">Reset ↻</button>
+    </div>
+  </div>
+</section>
+
+<section id="hadiah">
+  <div class="section-heading">
+    <small>🎁 A LITTLE GIFT FOR YOU 🎁</small>
+    <h2>Kejutan Manis Hari Ini!</h2>
+    <p>Pilih hadiah untuk membuka kejutan ajaib. 💝</p>
+  </div>
+  <div class="gift-grid">
+    <div class="gift"><div class="icon">🎀</div><h3>Pita Ajaib</h3><p>Pita cantik untuk menghiasi petualanganmu.</p><button onclick="claimGift(this,'🎀 Kamu mendapatkan Pita Ajaib! Cantik sekali!')">Buka Hadiah</button></div>
+    <div class="gift"><div class="icon">💎</div><h3>Kristal Pelangi</h3><p>Kristal berkilau dengan kekuatan pelangi.</p><button onclick="claimGift(this,'💎 Kristal Pelangi berhasil kamu dapatkan!')">Buka Hadiah</button></div>
+    <div class="gift"><div class="icon">🧸</div><h3>Boneka Gemes</h3><p>Teman kecil yang siap menemanimu bermain.</p><button onclick="claimGift(this,'🧸 Hore! Boneka Gemes sekarang jadi temanmu!')">Buka Hadiah</button></div>
+  </div>
+</section>
+
+<div class="quote">
+  <div>🌷✨🦄✨🌷</div>
+  <blockquote>"Jangan pernah berhenti bermimpi, karena keajaiban dimulai dari imajinasi!"</blockquote>
+  <p>♡ Dengan cinta dari FantasyLand ♡</p>
+</div>
+</main>
+
+<footer>
+  <div class="logo">🦄 FantasyLand</div>
+  <p>Dunia Fantasi Penuh Warna, Cerita, dan Keajaiban! 💗</p>
+  <p style="margin:15px 0">
+    <a href="#beranda">Beranda</a>
+    <a href="#dunia">Dunia</a>
+    <a href="#game">Mini Game</a>
+    <a href="#hadiah">Hadiah</a>
+  </p>
+  <p>Made with ♡ and a little magic ✨ © 2026 FantasyLand</p>
+</footer>
+
+<div class="modal" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal-card">
+    <button class="close" onclick="closeModal()">×</button>
+    <div class="modal-emoji" id="modalEmoji">🦄</div>
+    <h2 id="modalTitle">Selamat Datang!</h2>
+    <p id="modalText">Ayo mulai petualangan ajaibmu!</p>
+    <button class="btn" onclick="closeModal()">Yeay, Ayo! 💗</button>
+  </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+function toggleMenu() {
+  document.getElementById('nav').classList.toggle('open');
+}
+function closeMenu() {
+  document.getElementById('nav').classList.remove('open');
+}
+function goToWorlds() {
+  document.getElementById('dunia').scrollIntoView({behavior:'smooth'});
+}
+function goToGame() {
+  document.getElementById('game').scrollIntoView({behavior:'smooth'});
+}
+function openModal(emoji,title,text) {
+  document.getElementById('modalEmoji').textContent=emoji;
+  document.getElementById('modalTitle').textContent=title;
+  document.getElementById('modalText').textContent=text;
+  document.getElementById('modal').classList.add('show');
+}
+function closeModal() {
+  document.getElementById('modal').classList.remove('show');
+}
+function openWelcome() {
+  openModal('🦄✨','Selamat Datang, Peri Kecil!','Dunia FantasyLand sudah menunggumu. Pilih dunia favoritmu dan mulailah petualangan yang penuh keajaiban!');
+}
+function showWorld(name,emoji,description) {
+  openModal(emoji,'Selamat Datang di '+name+'!',description);
+}
+let toastTimeout;
+function notify(message) {
+  const toast=document.getElementById('toast');
+  toast.textContent=message;
+  toast.classList.add('show');
+  clearTimeout(toastTimeout);
+  toastTimeout=setTimeout(()=>toast.classList.remove('show'),2600);
+}
+
+// Hadiah hanya dapat diklaim sekali per halaman dibuka.
+function claimGift(button,message) {
+  if(button.disabled) return;
+  button.disabled=true;
+  button.textContent='Sudah Didapat ✓';
+  notify(message);
+}
+
+// Mini game
+let score=0;
+let timeLeft=20;
+let gameTimer=null;
+let playing=false;
+let best=0;
+try {
+  best=Number(localStorage.getItem('fantasyBest'))||0;
+} catch(e) {}
+document.getElementById('best').textContent=best;
+
+function startGame() {
+  if(playing) return;
+  score=0;
+  timeLeft=20;
+  playing=true;
+  document.getElementById('score').textContent=score;
+  document.getElementById('time').textContent=timeLeft;
+  document.getElementById('gameMessage').textContent='Ayo tangkap semua bintang! ✨';
+  document.getElementById('startGame').disabled=true;
+  document.getElementById('startGame').textContent='Sedang Bermain...';
+  spawnStars();
+
+  gameTimer=setInterval(()=>{
+    timeLeft--;
+    document.getElementById('time').textContent=timeLeft;
+    if(timeLeft<=0) endGame();
+  },1000);
+}
+function spawnStars() {
+  if(!playing) return;
+  const area=document.getElementById('starArea');
+  area.innerHTML='';
+  const symbols=['⭐','🌟','💖','✨','💎'];
+  for(let i=0;i<5;i++) {
+    const star=document.createElement('button');
+    star.className='star';
+    star.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+    star.setAttribute('aria-label','Tangkap bintang');
+    star.style.animationDelay=(Math.random()*.8)+'s';
+    star.onclick=()=>{
+      if(!playing) return;
+      score+=10;
+      document.getElementById('score').textContent=score;
+      spawnStars();
+    };
+    area.appendChild(star);
+  }
+}
+function endGame() {
+  playing=false;
+  clearInterval(gameTimer);
+  document.getElementById('startGame').disabled=false;
+  document.getElementById('startGame').textContent='Main Lagi 🎮';
+  document.getElementById('starArea').innerHTML='<span style="font-size:55px">🏆</span><p style="width:100%">Waktu habis! Kamu hebat!</p>';
+  document.getElementById('gameMessage').textContent='Permainan selesai! Skormu '+score+' poin! 💖';
+  if(score>best) {
+    best=score;
+    try { localStorage.setItem('fantasyBest',String(best)); } catch(e) {}
+    document.getElementById('best').textContent=best;
+    notify('🎉 Rekor baru! Kamu luar biasa!');
+  }
+}
+function resetGame() {
+  clearInterval(gameTimer);
+  playing=false;
+  score=0;
+  timeLeft=20;
+  document.getElementById('score').textContent='0';
+  document.getElementById('time').textContent='20';
+  document.getElementById('startGame').disabled=false;
+  document.getElementById('startGame').textContent='Mulai Bermain 🎮';
+  document.getElementById('gameMessage').textContent='Siap menjadi pengumpul bintang? 💗';
+  document.getElementById('starArea').innerHTML='<span style="font-size:43px">🌈</span><p style="width:100%">Tekan tombol mulai untuk bermain!</p>';
+}
+</script>
+</body>
+</html>
